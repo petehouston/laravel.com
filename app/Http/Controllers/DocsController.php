@@ -45,7 +45,7 @@ class DocsController extends Controller {
 		}
 
 		$content = $this->docs->get($version, $page ?: 'installation');
-		
+
 		if (is_null($content)) {
 			abort(404);
 		}
@@ -61,7 +61,7 @@ class DocsController extends Controller {
 		}
 
 		return view('docs', [
-			'title' => count($title) ? $title->text() : null,
+			'title' => count($title) ? utf8_decode($title->text()) : null,
 			'index' => $this->docs->getIndex($version),
 			'content' => $content,
 			'currentVersion' => $version,
